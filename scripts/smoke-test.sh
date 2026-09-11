@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Smoke test: run every command documented in the README against a temp root.
 set -uo pipefail
-cd /home/ubuntu/projects/zeroegress
+cd "$(dirname "$0")/.."
 OUT=/tmp/zeroegress_smoke.txt
 BIN=.venv/bin/zeroegress
 T=/tmp/zg_smoke
