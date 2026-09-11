@@ -1,0 +1,25 @@
+TENDER NOTICE (sample file for the gate demo)
+
+Reference: TND-4412/2026
+Issuing authority: Regional Health Authority (sample)
+Subject: Two-year preventive maintenance of MEP systems - three hospital sites
+
+Scope of work
+Chillers (4 units, 850 TR), medical gas pipeline systems, 6 elevators and 2 standby
+generators. Monthly preventive visits, 24x7 breakdown response, spares included.
+
+Commercial conditions
+Bid bond: 2 percent of the offer value.
+Performance bond: 10 percent of the contract value.
+Liquidated damages: 0.1 percent of the contract value per day of delay.
+Payment terms: 30 days from certified monthly invoice.
+Retention: 5 percent of each invoice, released 12 months after acceptance.
+
+Submission
+Prequalification file, technical proposal and priced bill of quantities.
+Deadline: 12 October 2026, 14:00 local time.
+Enquiries: tenders.desk@example-hospital.sa, mobile 0551234567.
+Vendor must hold a valid commercial registration (CR 1010123456) and VAT
+registration 300123456700003.
+
+Confidential - not for distribution outside the evaluation committee.

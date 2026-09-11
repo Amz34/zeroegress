@@ -1,0 +1,24 @@
+# secrets and local state
+.env
+*.env
+*.key
+*.secret
+creds.json
+*.jsonl
+.zeroegress/
+vaults/
+*.gpg
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+# editors / os
+.DS_Store
+.idea/
+.vscode/
+*.swp

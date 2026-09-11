@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Data Handling and Confidentiality Statement - {{ORG}}</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  * { box-sizing: border-box; }
+  html { font-family: "Helvetica Neue", Arial, sans-serif; color: #1b2230; }
+  body { margin: 0; font-size: 10.4pt; line-height: 1.48; }
+  h1 { font-size: 20pt; margin: 0 0 2mm; letter-spacing: -0.2pt; color: #0f1c31; }
+  h2 { font-size: 12.4pt; margin: 7mm 0 2mm; color: #0f1c31; border-bottom: 1.4pt solid #c9a227; padding-bottom: 1.2mm; }
+  h3 { font-size: 10.8pt; margin: 4.5mm 0 1.5mm; color: #22324f; }
+  p { margin: 0 0 2.6mm; }
+  ul, ol { margin: 0 0 3mm 4.5mm; padding: 0; }
+  li { margin-bottom: 1.2mm; }
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; font-size: 9.6pt; }
+  th, td { text-align: left; vertical-align: top; padding: 2mm 2.4mm; border-bottom: 0.6pt solid #d8dde6; }
+  th { background: #f2f4f8; font-weight: 600; color: #0f1c31; }
+  .lede { font-size: 10.8pt; color: #3a4763; margin-bottom: 4mm; }
+  .box { border: 0.8pt solid #d8dde6; border-left: 3pt solid #c9a227; background: #fafbfd; padding: 3mm 3.5mm; margin: 3mm 0 4mm; }
+  .small { font-size: 9pt; color: #59617a; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2pt solid #0f1c31; padding-bottom: 2.5mm; margin-bottom: 5mm; }
+  .brand { font-size: 13pt; font-weight: 700; letter-spacing: 1.6pt; text-transform: uppercase; color: #0f1c31; }
+  .meta { font-size: 8.6pt; color: #59617a; text-align: right; }
+  .footer { position: fixed; bottom: 6mm; left: 0; right: 0; font-size: 7.6pt; color: #8a93a8; letter-spacing: 1.1pt; text-transform: uppercase; border-top: 0.5pt solid #e2e6ee; padding-top: 1.5mm; }
+  .pb { page-break-before: always; }
+  .sign { margin-top: 6mm; display: flex; gap: 12mm; }
+  .sign div { flex: 1; border-top: 0.7pt solid #9199ad; padding-top: 1.5mm; font-size: 9pt; color: #59617a; }
+</style>
+</head>
+<body>
+
+<div class="footer">{{ORG}} &nbsp;|&nbsp; Data Handling &amp; Confidentiality Statement &nbsp;|&nbsp; Prepared for {{CLIENT}} &nbsp;|&nbsp; {{DATE}}</div>
+
+<div class="head">
+  <div class="brand">{{ORG}}</div>
+  <div class="meta">
+    Data Handling &amp; Confidentiality Statement<br>
+    Prepared for: {{CLIENT}}<br>
+    Date: {{DATE}} &nbsp; Document version: 1.0
+  </div>
+</div>
+
+<h1>How your material is handled</h1>
+<p class="lede">This statement describes, in plain terms, where your documents live, which systems touch
+them, what leaves our environment and what does not. Every clause below describes a control that is in
+place today, and Section 8 explains how you can verify it yourself.</p>
+
+<h2>1. Scope</h2>
+<p>It applies to all material received from {{CLIENT}} in connection with the engagement: tender and
+RFP documentation, bills of quantities, pricing schedules, drawings and specifications, correspondence,
+credentials, and any derived working files we create from them.</p>
+
+<h2>2. What stays inside our environment</h2>
+<table>
+  <tr><th style="width:38%">Activity</th><th style="width:31%">Where it runs</th><th>What leaves</th></tr>
+  <tr><td>Reading, searching and summarising your documents</td><td>Self-hosted open-weight models on our own dedicated instance</td><td>Nothing</td></tr>
+  <tr><td>Embeddings and document index</td><td>Same instance, local vector database</td><td>Nothing</td></tr>
+  <tr><td>Drafting, clause review, technical comparison</td><td>Same instance (local model runtime)</td><td>Nothing</td></tr>
+  <tr><td>Storage of your documents and working files</td><td>Encrypted per-client archives on the same instance</td><td>Nothing</td></tr>
+  <tr><td>Backups</td><td>Encrypted before upload; ciphertext stored in a backup account we control</td><td>Ciphertext only</td></tr>
+</table>
+
+<div class="box">
+  <strong>Enforced, not promised.</strong> The processing runtime is technically prevented from reaching
+  external endpoints: the client library only accepts a loopback address, and every processing run executes
+  inside a socket-level egress jail that blocks outbound connections and hostname lookups. Blocked attempts
+  are recorded in an audit log. Section 8 shows the one-command demonstration.
+</div>
+
+<h2>3. Boundaries we do not hide</h2>
+<ul>
+  <li><strong>Correspondence platforms.</strong> E-mail and messaging are delivered through third-party
+  providers and stored on their systems under their own terms. We recommend specific document transfer
+  methods where confidentiality is critical.</li>
+  <li><strong>Generic assistance.</strong> Non-confidential general queries may be handled with commercial
+  cloud AI services. Your documents, client names, prices and correspondence never form part of such
+  queries, and the sensitivity gate described in Section 8 is what prevents it.</li>
+  <li><strong>Hosting.</strong> Our instance runs in a dedicated cloud account in a single region, in our
+  name and under our control. Hosting disk encryption is not part of our claims: confidentiality of
+  documents rests on the per-client encryption described in Section 4.</li>
+</ul>
+
+<h2>4. Encryption</h2>
+<ul>
+  <li><strong>Per-client archives:</strong> AES-256 (OpenPGP symmetric, iterated SHA-512 key derivation),
+  one passphrase per client. A key for one client cannot open another client's archive.</li>
+  <li><strong>Integrity:</strong> every archive is recorded in a manifest with its SHA-256 hash; verification
+  detects any modification of the stored file.</li>
+  <li><strong>Backups:</strong> encrypted on the processing machine before transfer; the storage provider
+  holds ciphertext only. Local copies are retained for rapid restoration and are rotated.</li>
+  <li><strong>Key custody:</strong> passphrases are held in a 0600 permission key file and in our password
+  manager. A copy is provided to you on request so that you are never dependent on us.</li>
+</ul>
+
+<h2>5. Access control</h2>
+<ul>
+  <li>Access is limited to the named individuals assigned to the engagement; there are no shared accounts.</li>
+  <li>Your archive passphrase is unique, so access can be revoked per client by rotating that key alone.</li>
+  <li>Documents are not copied to personal devices, consumer cloud drives, or third-party web tools.</li>
+</ul>
+
+<h2>6. Sub-processors</h2>
+<p>The following third parties are involved, with the role and the data each can see:</p>
+<ul>{{SUBPROCESSORS}}</ul>
+<p class="small">No third-party AI model provider is a sub-processor for confidential material. This list
+is maintained as part of this document and changes are notified to {{CLIENT}} in writing.</p>
+
+<h2>7. Retention, deletion and incidents</h2>
+<ul>
+  <li><strong>Retention:</strong> working material is kept for {{RETENTION_DAYS}} days after the final
+  submission unless a different period is agreed in writing; vault archives hold {{VAULT_ARCHIVES}} archive(s)
+  for this engagement at the time of issue.</li>
+  <li><strong>Deletion:</strong> on written request, archives, working copies and indexes are deleted within
+  5 business days, with a deletion confirmation that names the archives removed.</li>
+  <li><strong>Incident notice:</strong> we notify {{CLIENT}} without undue delay and in any event within
+  72 hours of becoming aware of any incident affecting the confidentiality or integrity of the material.</li>
+</ul>
+
+<h2>8. Verification</h2>
+<ol>
+  <li><strong>Encryption:</strong> <span class="small">run <code>zeroegress vault verify --client &lt;your-name&gt;</code></span> -
+  decrypts each archive, checks the SHA-256 against the manifest, and lists the members. It prints nothing
+  readable unless a passphrase is supplied.</li>
+  <li><strong>Local-only processing:</strong> <span class="small">run <code>zeroegress prove</code></span> -
+  starts the egress jail, attempts three external endpoints, and produces a local model answer while those
+  attempts are blocked. The blocked attempts are printed.</li>
+  <li><strong>Sensitivity gate:</strong> <span class="small">run <code>zeroegress gate &lt;file&gt;</code></span> -
+  shows which signals in a document classify it as local-only before anything is sent anywhere.</li>
+  <li><strong>No provider keys:</strong> <span class="small">run <code>zeroegress status</code></span> -
+  reports the model endpoint and lists any third-party provider secrets present in the environment.</li>
+</ol>
+
+<h2>9. Confidentiality terms ready for the engagement agreement</h2>
+<ol>
+  <li><strong>Confidential Information</strong> means all information disclosed by {{CLIENT}} in connection
+  with the engagement, in any form, including tender documentation, pricing, technical specifications,
+  drawings, correspondence and any derived material.</li>
+  <li><strong>Permitted purpose.</strong> The provider shall use Confidential Information solely to perform
+  the engagement and for no other purpose, including model training or product development.</li>
+  <li><strong>No third-party AI processing.</strong> The provider shall not submit Confidential Information
+  to any third-party artificial-intelligence service. Automated analysis shall be performed only on
+  self-hosted models within the provider's controlled environment.</li>
+  <li><strong>Security measures.</strong> The provider shall maintain the controls set out in Sections 2 to 6,
+  shall not weaken them during the term, and shall notify {{CLIENT}} before any material change.</li>
+  <li><strong>Disclosure.</strong> Disclosure to employees and sub-processors is permitted only on a
+  need-to-know basis and only where equivalent obligations apply, and the provider remains responsible for
+  their compliance.</li>
+  <li><strong>Return or destruction.</strong> On request, the provider shall return or securely destroy
+  Confidential Information within 5 business days and confirm in writing which archives were removed.</li>
+  <li><strong>Breach notification.</strong> The provider shall notify {{CLIENT}} within 72 hours of becoming
+  aware of any unauthorised access to, or disclosure of, Confidential Information, with the facts known and
+  the remediation taken.</li>
+  <li><strong>Audit.</strong> Once per engagement term, on reasonable notice, {{CLIENT}} may verify the
+  controls described in Section 8, directly or through an adviser bound by confidentiality.</li>
+  <li><strong>No licence.</strong> Nothing in the engagement transfers intellectual property rights in
+  Confidential Information; all rights remain with {{CLIENT}}.</li>
+  <li><strong>Term.</strong> These obligations survive completion of the engagement for three (3) years,
+  and for any longer period required by applicable law or by the confidentiality of a live procurement.</li>
+</ol>
+
+<div class="box">
+  <strong>What this statement does not claim.</strong> We do not hold an ISO/IEC 27001 or SOC 2 certification,
+  and we make no claim of hosted disk-level encryption. The controls above are technical measures that can be
+  inspected and tested by you, and we prefer to be judged on those rather than on certificates.
+</div>
+
+<p class="small">Prepared by {{ORG}}. Contact for security and data-protection questions: {{CONTACT}}.
+{{EXTRA_NOTES}}</p>
+
+<div class="sign">
+  <div>For and on behalf of {{ORG}}<br>Name and position:</div>
+  <div>For and on behalf of {{CLIENT}}<br>Name and position:</div>
+</div>
+
+</body>
+</html>
