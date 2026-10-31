@@ -14,6 +14,10 @@ leaves the machine. Not a policy. Not a promise. Enforcement at the socket layer
 ![dependencies](https://img.shields.io/badge/runtime%20deps-none-brightgreen)
 ![cloud calls](https://img.shields.io/badge/cloud%20API%20calls-zero-critical)
 
+<br/>
+
+![ZeroEgress Architecture Overview](assets/zeroegress-overview.jpg)
+
 </div>
 
 ---
@@ -123,7 +127,7 @@ Being precise here is what makes the rest believable:
   That is what layer 1 is for.
 * **It does not make a local model smart.** A 3B model on a small VM is weaker than a
   frontier API. The trade-off is deliberate: quality for confidentiality, per document.
-* **It does not certify you.** No ISO 27001, no SOC 2. It produces evidence of the
+* **It does not certify you.** [claim-ok: explicit disclaimer clarifying tool does not grant external certification] No ISO 27001, no SOC 2. It produces evidence of the
   specific controls it implements — nothing more.
 
 ## Who verifies it
